@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Document Processing System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0B1120; 
+            color: #FFFFFF; 
+            overflow-x: hidden;
+        }
+        .hero-gradient-text {
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .typing-effect {
+            overflow: hidden;
+            border-right: .15em solid #3B82F6;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #3B82F6; }
+        }
+        .glass-nav {
+            background: rgba(11, 17, 32, 0.7);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(55, 65, 81, 0.5);
+        }
+        .feature-card {
+            background-color: #111827;
+            border: 1px solid #374151;
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #3B82F6;
+            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative">
+    
+    <!-- Background elements -->
+    <div class="fixed top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-blue-600/10 blur-[150px] pointer-events-none"></div>
+    <div class="fixed bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-purple-600/10 blur-[150px] pointer-events-none"></div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.5)] border border-white/20 relative group">
+                        <i data-lucide="cpu" class="text-white w-5 h-5 group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-white">DOC<span class="text-blue-500">AI</span></span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="flex items-center space-x-8">
+                        <a href="#features" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">Features</a>
+                        <a href="#how-it-works" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">How it Works</a>
+                        <a href="#tech" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">Technology</a>
+                        <a href="dashboard.html" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-all shadow-[0_0_15px_rgba(59,130,246,0.4)] hover:shadow-[0_0_25px_rgba(59,130,246,0.6)] flex items-center gap-2 border border-blue-400/30">
+                            Dashboard <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="flex-grow pt-32 pb-20 px-6 lg:px-8 flex flex-col items-center justify-center text-center relative z-10 min-h-screen">
+        <div class="max-w-5xl mx-auto w-full flex flex-col items-center">
+            
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-900/30 text-blue-300 font-medium text-sm mb-8 border border-blue-700/50 shadow-[0_0_10px_rgba(59,130,246,0.2)] backdrop-blur-md">
+                <span class="flex h-2 w-2 relative">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                </span>
+                Enterprise AI Engine v2.0 Active
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
+                <span class="block text-white mb-2">AI Document</span>
+                <span class="block text-white mb-2">Processing System</span>
+                <span class="hero-gradient-text typing-effect inline-block mt-2 text-4xl md:text-5xl">Transform Unstructured to Structured</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                Automate your data extraction workflow with state-of-the-art OCR and Generative AI. Process invoices, resumes, medical reports, and certificates with pinpoint accuracy.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-5 justify-center w-full max-w-md">
+                <a href="upload.html" class="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] hover:-translate-y-1 flex items-center justify-center gap-2 border border-white/10">
+                    <i data-lucide="zap" class="w-5 h-5"></i> Get Started
+                </a>
+                <a href="#how-it-works" class="flex-1 bg-[#111827] text-white border border-gray-700 hover:border-gray-500 hover:bg-gray-800 px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg flex items-center justify-center gap-2">
+                    <i data-lucide="info" class="w-5 h-5"></i> Learn More
+                </a>
+            </div>
+        </div>
+
+        <!-- Animated Floating Dashboard Graphic -->
+        <div class="mt-24 relative w-full max-w-5xl animate-float">
+            <div class="bg-[#111827] rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 border border-gray-700 shadow-2xl relative overflow-hidden">
+                
+                <!-- Glowing line top -->
+                <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50"></div>
+                
+                <div class="flex-1 bg-[#0B1120] rounded-xl p-6 border border-gray-800 shadow-inner relative overflow-hidden group w-full">
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-blue-900/10"></div>
+                    <div class="flex items-center gap-3 mb-6 text-gray-400 border-b border-gray-800 pb-4">
+                        <i data-lucide="file-text" class="w-6 h-6 text-blue-400"></i>
+                        <span class="font-mono text-sm text-gray-300">Invoice_TechCorp.pdf</span>
+                    </div>
+                    <div class="space-y-4 opacity-70 group-hover:opacity-100 transition-opacity">
+                        <div class="h-4 bg-gray-800 rounded w-3/4"></div>
+                        <div class="h-4 bg-gray-800 rounded w-1/2"></div>
+                        <div class="h-4 bg-gray-800 rounded w-5/6"></div>
+                        <div class="h-4 bg-gray-800 rounded w-2/3"></div>
+                        <div class="h-4 bg-gray-800 rounded w-4/5"></div>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col items-center gap-3 text-blue-500 relative z-10">
+                    <div class="w-16 h-16 rounded-full bg-blue-900/30 flex items-center justify-center border border-blue-500/30 shadow-[0_0_20px_rgba(59,130,246,0.3)] relative">
+                        <div class="absolute inset-0 rounded-full border-t-2 border-blue-500 animate-spin"></div>
+                        <i data-lucide="cpu" class="w-8 h-8 text-blue-400"></i>
+                    </div>
+                    <div class="flex flex-col items-center animate-pulse">
+                        <i data-lucide="chevron-right" class="w-6 h-6 -mb-3"></i>
+                        <i data-lucide="chevron-right" class="w-6 h-6 -mb-3 opacity-75"></i>
+                        <i data-lucide="chevron-right" class="w-6 h-6 opacity-50"></i>
+                    </div>
+                </div>
+                
+                <div class="flex-1 bg-[#0B1120] rounded-xl p-6 shadow-xl border border-gray-800 w-full relative">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-green-500/5 rounded-bl-full pointer-events-none"></div>
+                    <div class="flex items-center justify-between border-b border-gray-800 pb-4 mb-4">
+                        <div class="flex items-center gap-2 text-green-400 font-medium">
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i> Structured Data
+                        </div>
+                        <span class="text-xs font-mono bg-blue-900/30 text-blue-400 px-2 py-1 rounded border border-blue-800/50">JSON</span>
+                    </div>
+                    <div class="space-y-3 font-mono text-sm">
+                        <div class="flex justify-between items-center bg-gray-900/50 p-2 rounded">
+                            <span class="text-gray-500">Document Type</span>
+                            <span class="font-semibold text-blue-400">Invoice</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-gray-900/50 p-2 rounded">
+                            <span class="text-gray-500">Vendor</span>
+                            <span class="font-semibold text-white">TechCorp Inc.</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-gray-900/50 p-2 rounded">
+                            <span class="text-gray-500">Total Amount</span>
+                            <span class="font-semibold text-white">$4,250.00</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded border border-green-900/50 bg-green-900/10">
+                            <span class="text-gray-500">Confidence Score</span>
+                            <span class="font-bold text-green-400">99.8%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- How it Works Section -->
+    <section id="how-it-works" class="py-20 relative z-10 bg-[#111827] border-y border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Processing Pipeline</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">How unstructured documents are transformed into clean, usable data.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
+                <!-- Connecting line for desktop -->
+                <div class="hidden md:block absolute top-1/2 left-10 right-10 h-0.5 bg-gray-800 -translate-y-1/2 z-0"></div>
+                
+                <div class="relative z-10 flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 rounded-2xl bg-gray-800 border border-gray-700 flex items-center justify-center mb-4 group-hover:border-blue-500 group-hover:bg-blue-900/20 transition-all">
+                        <i data-lucide="file-up" class="w-7 h-7 text-gray-400 group-hover:text-blue-400"></i>
+                    </div>
+                    <h3 class="text-white font-semibold mb-2">Upload</h3>
+                    <p class="text-xs text-gray-500">Unstructured Document</p>
+                </div>
+                
+                <div class="relative z-10 flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 rounded-2xl bg-gray-800 border border-gray-700 flex items-center justify-center mb-4 group-hover:border-purple-500 group-hover:bg-purple-900/20 transition-all">
+                        <i data-lucide="scan-text" class="w-7 h-7 text-gray-400 group-hover:text-purple-400"></i>
+                    </div>
+                    <h3 class="text-white font-semibold mb-2">OCR</h3>
+                    <p class="text-xs text-gray-500">Text Extraction</p>
+                </div>
+                
+                <div class="relative z-10 flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 rounded-2xl bg-gray-800 border border-gray-700 flex items-center justify-center mb-4 group-hover:border-blue-500 group-hover:bg-blue-900/20 transition-all">
+                        <i data-lucide="network" class="w-7 h-7 text-gray-400 group-hover:text-blue-400"></i>
+                    </div>
+                    <h3 class="text-white font-semibold mb-2">AI Engine</h3>
+                    <p class="text-xs text-gray-500">Classification</p>
+                </div>
+                
+                <div class="relative z-10 flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 rounded-2xl bg-gray-800 border border-gray-700 flex items-center justify-center mb-4 group-hover:border-emerald-500 group-hover:bg-emerald-900/20 transition-all">
+                        <i data-lucide="binary" class="w-7 h-7 text-gray-400 group-hover:text-emerald-400"></i>
+                    </div>
+                    <h3 class="text-white font-semibold mb-2">Extraction</h3>
+                    <p class="text-xs text-gray-500">Key-Value Parsing</p>
+                </div>
+                
+                <div class="relative z-10 flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 rounded-2xl bg-gray-800 border border-gray-700 flex items-center justify-center mb-4 group-hover:border-blue-500 group-hover:bg-blue-900/20 transition-all shadow-[0_0_15px_rgba(59,130,246,0.2)]">
+                        <i data-lucide="database" class="w-7 h-7 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-white font-semibold mb-2 text-blue-400">Structured Data</h3>
+                    <p class="text-xs text-gray-500">Ready for Analytics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0B1120] py-10 border-t border-gray-800 text-center relative z-10">
+        <div class="flex items-center justify-center gap-2 mb-4">
+            <i data-lucide="cpu" class="w-5 h-5 text-blue-500"></i>
+            <span class="text-lg font-bold tracking-tight text-white">DOC<span class="text-blue-500">AI</span></span>
+        </div>
+        <p class="text-gray-500 text-sm">Enterprise Document Processing System</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

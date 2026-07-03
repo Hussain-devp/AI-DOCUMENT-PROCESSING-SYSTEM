@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Processing - DOCAI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0B1120; 
+            color: #FFFFFF; 
+        }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-card {
+            background-color: #111827;
+            border: 1px solid #374151;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .glass-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B1120; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4B5563; 
+        }
+        
+        /* Nav active state */
+        .nav-active {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: #FFFFFF !important;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        .nav-active i {
+            color: #3B82F6 !important;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen">
+    
+    <!-- Sidebar -->
+    <aside class="w-64 border-r h-screen fixed left-0 top-0 flex flex-col shadow-2xl z-20" style="background-color: #111827; border-color: #374151;">
+        <div class="h-20 flex items-center px-6 border-b" style="border-color: #374151;">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-lg border border-white/10">
+                    <i data-lucide="cpu" class="text-white w-5 h-5"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-white">DOC<span class="text-blue-500">AI</span></span>
+            </div>
+        </div>
+        
+        <div class="flex-1 overflow-y-auto py-6 px-4 space-y-2">
+            <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-all group">
+                <i data-lucide="home" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                <span class="font-medium text-sm">Home</span>
+            </a>
+            <div class="pt-4 pb-2 px-4">
+                <p class="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Main Menu</p>
+            </div>
+            <a href="dashboard.html" id="nav-dashboard" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-all group">
+                <i data-lucide="layout-dashboard" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                <span class="font-medium text-sm">Dashboard</span>
+            </a>
+            <a href="upload.html" id="nav-upload" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-all group">
+                <i data-lucide="upload-cloud" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                <span class="font-medium text-sm">Upload</span>
+            </a>
+            <a href="search.html" id="nav-search" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-all group">
+                <i data-lucide="search" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                <span class="font-medium text-sm">Search</span>
+            </a>
+            <a href="analytics.html" id="nav-analytics" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-all group">
+                <i data-lucide="pie-chart" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                <span class="font-medium text-sm">Analytics</span>
+            </a>
+            <a href="reports.html" id="nav-reports" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-all group">
+                <i data-lucide="file-bar-chart" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                <span class="font-medium text-sm">Reports</span>
+            </a>
+        </div>
+        
+        <div class="p-4 border-t" style="border-color: #374151;">
+            <div class="rounded-xl p-3 border border-gray-800 bg-gray-900/50 backdrop-blur-md">
+                <div class="flex items-center gap-2 mb-1">
+                    <div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
+                    <span class="text-xs font-semibold text-gray-300">System Online</span>
+                </div>
+                <p class="text-[10px] text-gray-500 font-mono">Engine: Gemini 1.5 Pro</p>
+            </div>
+        </div>
+    </aside>
+
+    
+    <main class="ml-64 flex-1 flex flex-col min-h-screen relative overflow-hidden">
+        <!-- Subtle background glowing orbs -->
+        <div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-900/20 blur-[120px] pointer-events-none"></div>
+        <div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-purple-900/20 blur-[120px] pointer-events-none"></div>
+        
+        
+    <header class="h-20 backdrop-blur-xl border-b flex items-center justify-between px-8 sticky top-0 z-10 shadow-sm transition-all" style="background-color: rgba(11, 17, 32, 0.7); border-color: #374151;">
+        <h1 class="text-2xl font-bold text-white tracking-tight">Document Processing</h1>
+        <div class="flex items-center gap-6">
+            <div class="relative group">
+                <i data-lucide="search" class="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-blue-400 transition-colors"></i>
+                <input type="text" placeholder="Global search..." class="pl-11 pr-4 py-2.5 rounded-full text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all w-64 text-white placeholder-gray-500 bg-gray-800/80 border border-gray-700 hover:border-gray-600">
+            </div>
+            <div class="flex items-center gap-3 border-l pl-6 border-gray-800">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white flex items-center justify-center font-bold shadow-lg shadow-blue-900/20 border border-white/10">
+                    A
+                </div>
+                <div class="hidden md:block">
+                    <p class="text-sm font-semibold text-white">Admin User</p>
+                    <p class="text-xs text-gray-400 font-medium">Enterprise Admin</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+        
+        <div class="flex-1 p-8 overflow-y-auto relative z-10">
+            
+    <div class="mb-8">
+        <h2 class="text-3xl font-bold text-white tracking-tight mb-2">Process New Document</h2>
+        <p class="text-gray-400 text-sm">Upload unstructured files. The AI will extract only the critical structured data.</p>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+        <div class="w-full lg:w-1/2 flex flex-col gap-6">
+            <div class="glass-card p-10 flex flex-col items-center justify-center text-center border-2 border-dashed border-gray-700 hover:border-blue-500 hover:bg-blue-900/10 transition-all cursor-pointer group" id="upload-area" style="min-h: 420px;">
+                <div class="w-24 h-24 bg-gray-800 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-900/40 transition-all border border-gray-700 group-hover:border-blue-500/50 shadow-xl">
+                    <i data-lucide="cloud-upload" class="w-12 h-12 text-gray-400 group-hover:text-blue-400"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Drag & Drop Documents</h3>
+                <p class="text-gray-500 mb-8 text-sm">Supports PDF, JPG, PNG, WEBP (Max 10MB)</p>
+                <input type="file" id="file-input" class="hidden" accept=".pdf,.png,.jpg,.jpeg,.webp">
+                <button class="bg-gray-800 border border-gray-700 shadow-md text-white px-8 py-3 rounded-xl font-semibold hover:bg-gray-700 hover:border-gray-600 transition-colors" onclick="document.getElementById('file-input').click()">
+                    Browse Files
+                </button>
+            </div>
+            
+            <div id="loading-indicator" class="hidden glass-card p-8 flex flex-col justify-center" style="min-h: 420px;">
+                <h4 class="text-xl font-bold text-white mb-6 text-center">Processing Document</h4>
+                
+                <div class="space-y-4 max-w-sm mx-auto w-full">
+                    <!-- Step 1 -->
+                    <div id="step-1" class="flex items-center gap-4 text-gray-500 transition-colors duration-300">
+                        <div class="w-8 h-8 rounded-full border-2 border-current flex items-center justify-center step-icon">
+                            <i data-lucide="scan" class="w-4 h-4"></i>
+                        </div>
+                        <span class="font-medium">Step 1: OCR Progress</span>
+                    </div>
+                    <!-- Step 2 -->
+                    <div id="step-2" class="flex items-center gap-4 text-gray-500 transition-colors duration-300">
+                        <div class="w-8 h-8 rounded-full border-2 border-current flex items-center justify-center step-icon">
+                            <i data-lucide="cpu" class="w-4 h-4"></i>
+                        </div>
+                        <span class="font-medium">Step 2: AI Classification</span>
+                    </div>
+                    <!-- Step 3 -->
+                    <div id="step-3" class="flex items-center gap-4 text-gray-500 transition-colors duration-300">
+                        <div class="w-8 h-8 rounded-full border-2 border-current flex items-center justify-center step-icon">
+                            <i data-lucide="file-json" class="w-4 h-4"></i>
+                        </div>
+                        <span class="font-medium">Step 3: Information Extraction</span>
+                    </div>
+                    <!-- Step 4 -->
+                    <div id="step-4" class="flex items-center gap-4 text-gray-500 transition-colors duration-300">
+                        <div class="w-8 h-8 rounded-full border-2 border-current flex items-center justify-center step-icon">
+                            <i data-lucide="table" class="w-4 h-4"></i>
+                        </div>
+                        <span class="font-medium">Step 4: Structured Output</span>
+                    </div>
+                    <!-- Step 5 -->
+                    <div id="step-5" class="flex items-center gap-4 text-gray-500 transition-colors duration-300">
+                        <div class="w-8 h-8 rounded-full border-2 border-current flex items-center justify-center step-icon">
+                            <i data-lucide="database" class="w-4 h-4"></i>
+                        </div>
+                        <span class="font-medium">Step 5: Saved to Database</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="w-full lg:w-1/2">
+            <div class="glass-card h-full flex flex-col overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500"></div>
+                <div class="p-6 border-b border-gray-800 bg-[#0B1120]/50">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="database" class="w-5 h-5 text-blue-400"></i>
+                        <h2 class="text-lg font-bold text-white">Structured Output</h2>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1 font-mono">STRICT_JSON_MODE: ENABLED</p>
+                </div>
+                <div class="p-6 flex-1 bg-[#0B1120]/80 overflow-y-auto" id="result-container">
+                    <div class="h-full flex flex-col items-center justify-center text-gray-600">
+                        <i data-lucide="braces" class="w-16 h-16 mb-4 opacity-30"></i>
+                        <p class="font-mono text-sm">Awaiting document payload...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Template for processing pipeline -->
+    <template id="pipeline-template">
+        <div class="mb-8 p-4 bg-gray-900/50 rounded-xl border border-gray-800">
+            <div class="flex items-center justify-between text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-2 w-full max-w-md mx-auto">
+                <span class="flex flex-col items-center gap-1"><i data-lucide="file-up" class="w-4 h-4"></i>Doc</span>
+                <i data-lucide="arrow-right" class="w-3 h-3 text-gray-600"></i>
+                <span class="flex flex-col items-center gap-1 text-purple-400"><i data-lucide="scan-text" class="w-4 h-4"></i>OCR</span>
+                <i data-lucide="arrow-right" class="w-3 h-3 text-gray-600"></i>
+                <span class="flex flex-col items-center gap-1 text-blue-400"><i data-lucide="cpu" class="w-4 h-4"></i>AI</span>
+                <i data-lucide="arrow-right" class="w-3 h-3 text-gray-600"></i>
+                <span class="flex flex-col items-center gap-1 text-green-400"><i data-lucide="database" class="w-4 h-4"></i>MySQL</span>
+            </div>
+        </div>
+        
+        <div class="bg-[#111827] border border-gray-700 rounded-xl overflow-hidden shadow-lg">
+            <div class="bg-gray-800/80 px-5 py-4 border-b border-gray-700 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <i data-lucide="file-text" class="w-5 h-5 text-gray-400"></i>
+                    <span class="font-mono text-sm text-white" id="tpl-filename">filename.pdf</span>
+                </div>
+                <span class="px-3 py-1 rounded-lg text-xs font-bold tracking-wide bg-blue-900/50 text-blue-400 border border-blue-800/50 shadow-inner uppercase" id="tpl-doctype">TYPE</span>
+            </div>
+            <div class="p-0">
+                <table class="w-full text-sm text-left">
+                    <thead class="bg-[#0B1120]">
+                        <tr>
+                            <th class="px-5 py-3 font-semibold text-gray-400 border-b border-gray-700 w-1/3">Key Field</th>
+                            <th class="px-5 py-3 font-semibold text-gray-400 border-b border-gray-700">Extracted Value</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tpl-fields" class="divide-y divide-gray-800 bg-[#111827]">
+                        <!-- Fields go here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </template>
+
+        </div>
+    </main>
+    
+    <script>
+        // Set active nav
+        const activeNav = document.getElementById('nav-upload');
+        if(activeNav) {
+            activeNav.classList.add('nav-active');
+            activeNav.classList.remove('text-gray-400', 'hover:bg-white/5');
+        }
+        lucide.createIcons();
+    </script>
+    <!-- Page specific scripts -->
+    
+    <script src="js/upload.js"></script>
+    
+    
+</body>
+</html>
